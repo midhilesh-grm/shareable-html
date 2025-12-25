@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Databridge Personas R&amp;R - Complete Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Roboto+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --architect: #8b5cf6; --pm: #3b82f6; --ba: #059669; --lead-de: #f59e0b;
+      --de: #ef4444; --dataops: #ec4899; --devops: #6366f1; --bi: #06b6d4;
+      
+      --stage1: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+      --stage2: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+      --stage3: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+      --stage4: linear-gradient(135deg, #fbbf24 0%, #fcd34d 100%);
+      --stage5: linear-gradient(135deg, #fb923c 0%, #fdba74 100%);
+      --stage6: linear-gradient(135deg, #f472b6 0%, #f9a8d4 100%);
+      --stage7: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+      font-family: 'Roboto', sans-serif;
+      color: #0f172a;
+      line-height: 1.5;
+    }
+
+    .canvas {
+      width: 3440px;
+      min-height: 10000px;
+      padding: 16px;
+      margin: 0 auto;
+    }
+
+    .content-wrapper {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 12px;
+      padding: 14px;
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .title {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle { font-size: 15px; color: #475569; font-family: 'Roboto Condensed'; font-weight: 600; margin-top: 4px; }
+    .context { font-size: 13px; color: #475569; margin-top: 4px; font-family: 'Roboto Condensed'; }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-family: 'Roboto Condensed';
+      font-weight: 600;
+    }
+
+    .persona-badge {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .badge-architect { background: var(--architect); }
+    .badge-pm { background: var(--pm); }
+    .badge-ba { background: var(--ba); }
+    .badge-lead-de { background: var(--lead-de); }
+    .badge-de { background: var(--de); }
+    .badge-dataops { background: var(--dataops); }
+    .badge-devops { background: var(--devops); }
+    .badge-bi { background: var(--bi); }
+
+    /* 8-column layout: 1 left + 6 middle (stages 2&3 combined) + 1 right */
+    .combined-grid {
+      display: grid;
+      grid-template-columns: 1fr repeat(6, 1fr) 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* Left persona column with dark gray gradient */
+    .persona-left {
+      grid-column: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 12px;
+      background: linear-gradient(135deg, #374151 0%, #4b5563 40%, #6b7280 100%);
+      border-radius: 12px;
+      border: 2px solid #374151;
+    }
+
+    /* Right persona column with same dark gray gradient */
+    .persona-right {
+      grid-column: 8;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 12px;
+      background: linear-gradient(135deg, #374151 0%, #4b5563 40%, #6b7280 100%);
+      border-radius: 12px;
+      border: 2px solid #374151;
+    }
+
+    /* Stages section in middle - columns 2 through 7 (6 columns total, stages 2&3 combined) */
+    .stages-section {
+      grid-column: 2 / 8;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .stage-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stage-header {
+      padding: 18px 10px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Roboto Condensed';
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+      padding: 14px 16px;
+      font-size: 12.5px;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 12px 12px 0 0;
+      opacity: 0.85;
+    }
+
+    .card.architect::before { background: var(--architect); }
+    .card.pm::before { background: var(--pm); }
+    .card.ba::before { background: var(--ba); }
+    .card.lead-de::before { background: var(--lead-de); }
+    .card.de::before { background: var(--de); }
+    .card.dataops::before { background: var(--dataops); }
+    .card.devops::before { background: var(--devops); }
+    .card.bi::before { background: var(--bi); }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1e293b;
+      font-family: 'Roboto Condensed';
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .card-subtitle {
+      font-size: 12.5px;
+      font-weight: 700;
+      margin: 8px 0 5px 0;
+      color: #1e293b;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      padding-left: 10px;
+      border-left: 3px solid #cbd5e1;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 12px;
+      line-height: 1.6;
+      font-family: 'Roboto Condensed';
+    }
+
+    .card li {
+      margin-bottom: 5px;
+    }
+
+    /* Single column bullets for persona cards */
+    .persona-left .card ul,
+    .persona-right .card ul {
+      font-size: 10.5px;
+      line-height: 1.4;
+    }
+
+    .persona-left .card li,
+    .persona-right .card li {
+      margin-bottom: 3px;
+    }
+
+    .card li strong {
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .code {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 7px 11px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 10.5px;
+      margin: 6px 0;
+      display: inline-block;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .metric {
+      display: inline-block;
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      color: #166534;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Section title styling */
+    .section-title {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 10px;
+      margin: 20px 0 12px 0;
+      text-align: center;
+      font-family: 'Roboto Condensed';
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 16px;
+      padding: 16px;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 10px;
+      font-size: 14px;
+      color: #e2e8f0;
+      font-family: 'Roboto Condensed';
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-weight: 600;
+    }
+  
+  /* Zoom Controls */
+  #zoom-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10000;
+    background: rgba(30, 41, 59, 0.95);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  #zoom-controls button {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  #zoom-controls button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  }
+
+  #zoom-controls button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+  }
+
+  #zoom-level {
+    text-align: center;
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 6px;
+    min-width: 60px;
+  }
+
+  body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .canvas {
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Crisp text rendering during zoom */
+  .canvas * {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+  }
+
+  /* Prevent blur on scaled elements */
+  .card, .stage-header, .card-title, .card-subtitle, .card ul, .card li {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  /* Instructions overlay */
+  .zoom-instructions {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 41, 59, 0.95);
+    color: #e2e8f0;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'Roboto Condensed', sans-serif;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .zoom-instructions strong {
+    color: #60a5fa;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="header">
+      <div class="title">Databridge Personas: Roles &amp; Responsibilities - Complete Reference</div>
+      <div class="subtitle">USE CASE: Multi-Market Sales Performance Dashboard (UK, Netherlands, Spain)</div>
+      <div class="context">8-week project • Finance Director: weekly sales across ERPs (UK:SAP, NL:Dynamics, Spain:Salesforce) • Standardized metrics in EUR • 8 Personas • 7 Stages</div>
+      <div class="legend">
+        <div class="legend-item"><span class="persona-badge badge-architect"></span>Data Architect</div>
+        <div class="legend-item"><span class="persona-badge badge-pm"></span>Product Manager</div>
+        <div class="legend-item"><span class="persona-badge badge-ba"></span>Business Analyst</div>
+        <div class="legend-item"><span class="persona-badge badge-lead-de"></span>Lead Data Engineer</div>
+        <div class="legend-item"><span class="persona-badge badge-de"></span>Data Engineer</div>
+        <div class="legend-item"><span class="persona-badge badge-bi"></span>BI Developer</div>
+        <div class="legend-item"><span class="persona-badge badge-dataops"></span>DataOps</div>
+        <div class="legend-item"><span class="persona-badge badge-devops"></span>DevOps</div>
+      </div>
+    </div>
+
+    <div class="section-title">📋 Project Overview - Personas & Stages</div>
+
+    <div class="content-wrapper">
+      <div class="combined-grid">
+        <div class="persona-left">
+      <div class="card architect">
+        <div class="card-title"><span class="persona-badge badge-architect"></span>Data Architect / Platform Manager</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Architecture design, feasibility assessment, resource allocation, governance</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> Discovery, planning, retrospectives, scaling decisions</div>
+          <div><strong>Impact:</strong> Defines layered architecture, assigns team, approves Phase 2</div>
+        </div>
+        <div class="card-subtitle">📋 KEY RESPONSIBILITIES</div>
+        <ul>
+          <li><strong>Technical Feasibility:</strong> Reviews SAP/Dynamics API connectivity within 8-week timeline</li>
+          <li><strong>Architecture:</strong> Defines Bronze→Silver→Gold→Power BI medallion approach</li>
+          <li><strong>Team Assignment:</strong> Sarah (Lead DE), Ahmed (DE), James (DevOps), Lisa (DataOps), Tom (BI)</li>
+          <li><strong>Risk Management:</strong> Identifies SAP API rate limits, GDPR masking requirements</li>
+          <li><strong>Governance:</strong> Ensures data quality standards, reusable patterns</li>
+          <li><strong>Phase Planning:</strong> Approves UK+NL Phase 1, defers Spain to Phase 2</li>
+        </ul>
+        <div class="card-subtitle">🎯 SUCCESS METRICS</div>
+        <ul>
+          <li>100% SLA delivery (Mon 9AM refresh)</li>
+          <li>±0.5% data accuracy maintained</li>
+          <li>Zero data quality incidents</li>
+          <li>87% Finance adoption (target: 80%)</li>
+        </ul>
+      </div>
+      <div class="card pm">
+        <div class="card-title"><span class="persona-badge badge-pm"></span>Data Product Manager</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Prioritization, roadmap alignment, success tracking</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> Initiation, launch, continuous improvement</div>
+          <div><strong>Impact:</strong> Validates UK+NL Phase 1 decision, tracks 87% adoption</div>
+        </div>
+        <div class="card-subtitle">📋 KEY RESPONSIBILITIES</div>
+        <ul>
+          <li><strong>Requirements Review:</strong> Validates BA's BRD against product roadmap</li>
+          <li><strong>Prioritization:</strong> Confirms 'Financial Reporting' pillar is HIGH PRIORITY</li>
+          <li><strong>Scope Decision:</strong> Phase 1: UK+NL (8 weeks) / Phase 2: Spain (defer)</li>
+          <li><strong>Success Metrics:</strong> Reduce manual reporting 8hrs→1hr, 80% adoption target</li>
+          <li><strong>Stakeholder Mgmt:</strong> Finance Director, regional finance managers</li>
+          <li><strong>Value Tracking:</strong> Measures actual: 6.5hrs/week savings (81%), 87% adoption</li>
+        </ul>
+        <div class="card-subtitle">💰 BUSINESS VALUE</div>
+        <ul>
+          <li><span class='metric'>81% time reduction</span> Manual reporting: 8hrs→1.5hrs/week</li>
+          <li><span class='metric'>€52K/year</span> Estimated FTE savings</li>
+          <li><span class='metric'>87% adoption</span> Finance team usage (target: 80%)</li>
+        </ul>
+      </div>
+      <div class="card ba">
+        <div class="card-title"><span class="persona-badge badge-ba"></span>Business Analyst</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Requirements gathering, validation, UAT, triage</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> Discovery → Operations (all stages)</div>
+          <div><strong>Impact:</strong> Defines acceptance criteria, validates fixes, supports users</div>
+        </div>
+        <div class="card-subtitle">🔍 DISCOVERY & REQUIREMENTS</div>
+        <ul>
+          <li><strong>Workshops:</strong> Discovery with Finance UK/NL/Spain stakeholders</li>
+          <li><strong>Pain Points:</strong> 'What decisions? What metrics? Current pain points?'</li>
+          <li><strong>Metrics:</strong> Revenue, Units Sold, AOV, Top Products by region/channel</li>
+          <li><strong>Drill-downs:</strong> Country→Region→Product Category hierarchy</li>
+          <li><strong>Currency:</strong> Standardize all to EUR using ECB rates</li>
+          <li><strong>User Stories:</strong> 'As Finance Director, I want to see total sales by country...'</li>
+        </ul>
+        <div class="card-subtitle">✅ ACCEPTANCE CRITERIA</div>
+        <ul>
+          <li><strong>Accuracy:</strong> Revenue within ±0.5% of source systems</li>
+          <li><strong>Performance:</strong> Dashboard loads in <5 seconds</li>
+          <li><strong>Refresh:</strong> Data available every Monday by 9 AM CET</li>
+          <li><strong>UAT:</strong> W10 UK £1.25M → €1.44M @ rate 1.15 ✓</li>
+        </ul>
+      </div>
+      <div class="card lead-de">
+        <div class="card-title"><span class="persona-badge badge-lead-de"></span>Lead Data Engineer (Sarah)</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Technical design, dbt models, code quality, mentorship</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> Design, development, CI/CD, code reviews</div>
+          <div><strong>Impact:</strong> Dimensional model design, currency conversion, PR reviews</div>
+        </div>
+        <div class="card-subtitle">🔍 DISCOVERY & REQUIREMENTS</div>
+        <ul>
+          <li><strong>SAP Assessment:</strong> Tables VBAK (Header) + VBAP (Line Items), Fields: VBELN, NETWR, WAERK</li>
+          <li><strong>Data Quality:</strong> 2% orders missing region code, needs handling</li>
+          <li><strong>Dynamics:</strong> SalesOrder + SalesOrderDetail entities via REST API (hourly)</li>
+          <li><strong>Refresh:</strong> SAP real-time available, recommend daily batch 3AM CET</li>
+        </ul>
+        <div class="card-subtitle">📊 DATA MODEL DESIGN</div>
+        <ul>
+          <li><strong>Grain:</strong> Fact_Sales = One row per order line item</li>
+          <li><strong>Fact:</strong> OrderID, OrderDate, CustomerID, ProductID, Quantity, Revenue_Local, Revenue_EUR</li>
+          <li><strong>Dimensions:</strong> Dim_Product, Dim_Customer, Dim_Geography, Dim_SalesChannel</li>
+          <li><strong>Slowly Changing:</strong> Product categories use SCD Type 2</li>
+        </ul>
+      </div>
+        </div>
+
+        <div class="stages-section">
+          <div class="stage-column">
+            <div class="stage-header" style="background: var(--stage1);">
+              STAGE 1<br>Project Initiation & Discovery<br><small>(Week 1-2)</small>
+            </div>
+            <div class="card ba">
+              <div class="card-title"><span class="persona-badge badge-ba"></span>Business Analyst (BA)</div>
+              <ul>
+                <li><strong>Discovery Workshops:</strong> Schedules with Finance Director and regional finance teams (UK, NL, Spain)</li>
+                <li><strong>Stakeholder Interviews:</strong> 'What decisions will this dashboard support?', 'What metrics do you track manually?'</li>
+                <li><strong>Requirements Documentation:</strong> Weekly sales revenue by region/product/channel, drill-down country→region→product, EUR standardization</li>
+                <li><strong>User Stories:</strong> 'As Finance Director, I want total sales revenue by country to identify underperforming markets'</li>
+                <li><strong>Acceptance Criteria:</strong> ±0.5% ERP accuracy, <5 sec load time, Mon 9AM CET refresh</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Business Requirements Document (BRD)</li>
+                <li>User stories with acceptance criteria</li>
+                <li>Data dictionary</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Finance Director, regional managers</li>
+                <li>Data Product Manager (roadmap validation)</li>
+                <li>Data Architect (technical feasibility)</li>
+              </ul>
+            </div>
+            <div class="card pm">
+              <div class="card-title"><span class="persona-badge badge-pm"></span>Data Product Manager</div>
+              <ul>
+                <li><strong>Requirements Review:</strong> Validates BA's requirements against product roadmap</li>
+                <li><strong>Priority Assessment:</strong> 'Aligns with Financial Reporting pillar—HIGH PRIORITY'</li>
+                <li><strong>Scope Validation:</strong> Defers Spain to Phase 2 (UK+NL Phase 1)</li>
+                <li><strong>Success Metrics:</strong> Reduce manual reporting 8hrs→1hr/week, 80% Finance adoption</li>
+                <li><strong>Project Approval:</strong> Adds to sprint backlog</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Project charter</li>
+                <li>Success metrics definition</li>
+                <li>Prioritization (UK+NL Phase 1)</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>BA (reviews requirements)</li>
+                <li>Data Architect (technical approach)</li>
+                <li>Finance stakeholders</li>
+              </ul>
+            </div>
+            <div class="card architect">
+              <div class="card-title"><span class="persona-badge badge-architect"></span>Data Architect</div>
+              <ul>
+                <li><strong>Feasibility Review:</strong> 'Can we connect SAP+Dynamics in 8 weeks?', 'Currency conversion data available?'</li>
+                <li><strong>Architecture Design:</strong> SAP+Dynamics → Bronze (Raw) → Silver (Cleaned) → Gold (Business Logic) → Power BI</li>
+                <li><strong>Resource Assignment:</strong> Sarah (Lead DE), Ahmed (DE), James (DevOps), Lisa (DataOps), Tom (BI Dev)</li>
+                <li><strong>Risk Identification:</strong> SAP API rate limits (recommend full weekly + incremental daily), GDPR masking in Silver</li>
+                <li><strong>Governance:</strong> Customer PII masking requirements, data quality standards</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Technical architecture diagram</li>
+                <li>Resource allocation</li>
+                <li>Risk assessment & mitigation</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Product Manager</li>
+                <li>BA (clarifies constraints)</li>
+                <li>Lead DE (planning)</li>
+                <li>DevOps/DataOps</li>
+              </ul>
+            </div>
+            <div class="card lead-de">
+              <div class="card-title"><span class="persona-badge badge-lead-de"></span>Lead Data Engineer (Sarah)</div>
+              <ul>
+                <li><strong>Technical Discovery:</strong> SAP/Dynamics API documentation review, data quality assessment, schema sampling</li>
+                <li><strong>Data Source Assessment:</strong> SAP VBAK (VBELN, NETWR, WAERK), 2% missing region codes; Dynamics SalesOrder (OrderNumber, TotalAmount)</li>
+                <li><strong>Data Model Design:</strong> Fact_Sales (OrderID, Date, CustomerID, Revenue_EUR), Dimensions: Product, Customer, Geography, SalesChannel</li>
+                <li><strong>Technical Spec:</strong> Ingestion approach, currency conversion logic, data quality checks</li>
+                <li><strong>Sprint Planning:</strong> Task 1: SAP ingest (Ahmed), Task 2: Dynamics ingest (Ahmed), Task 3: Currency conversion (Sarah), Task 4: Dimensional model (Sarah)</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Data source assessment</li>
+                <li>Dimensional data model</li>
+                <li>Technical spec document</li>
+                <li>Sprint backlog</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>BA (business logic)</li>
+                <li>Data Architect (reviews design)</li>
+                <li>DevOps (ADF needs)</li>
+                <li>DataOps (SLA requirements)</li>
+              </ul>
+            </div>
+            <div class="card devops">
+              <div class="card-title"><span class="persona-badge badge-devops"></span>DevOps Lead (James)</div>
+              <ul>
+                <li><strong>Infrastructure Provisioning:</strong> Azure Data Factory pipelines, Azure Key Vault secrets (ERP credentials), Git branches</li>
+                <li><strong>CI/CD Setup:</strong> GitHub Actions workflow for dbt, automated PR testing</li>
+                <li><strong>Network Config:</strong> VPN/ExpressRoute to SAP (UK), API gateway for Dynamics (NL)</li>
+                <li><strong>Capacity Monitoring:</strong> 'Current Synapse pool has capacity—no scaling needed'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Provisioned infrastructure</li>
+                <li>CI/CD pipeline config</li>
+                <li>Network connectivity</li>
+                <li>Secrets management</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Engineers</li>
+                <li>Data Architect</li>
+                <li>DataOps (pipeline handoff)</li>
+              </ul>
+            </div>
+            <div class="card dataops">
+              <div class="card-title"><span class="persona-badge badge-dataops"></span>DataOps Engineer (Lisa)</div>
+              <ul>
+                <li><strong>Operational Requirements:</strong> Mon 9AM CET refresh → scheduling, ±0.5% accuracy → quality checks</li>
+                <li><strong>Great Expectations Setup:</strong> expect_column_values_to_not_be_null [OrderID, Revenue], expect_values_between [Revenue: 0-1M], expect_row_count [1K-50K weekly]</li>
+                <li><strong>Monitoring:</strong> Pipeline success/failure alerts, data quality alerts, latency monitoring</li>
+                <li><strong>Runbook Creation:</strong> 'SAP fail: Check VPN→retry→escalate to James', 'Currency missing: Check ECB API→use prev day→notify BA'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Data quality check suite</li>
+                <li>Monitoring alerts</li>
+                <li>Operational runbook</li>
+                <li>SLA definition</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>BA (business expectations)</li>
+                <li>Lead DE (technical ops)</li>
+                <li>DevOps (infra monitoring)</li>
+              </ul>
+            </div>
+            <div class="card bi">
+              <div class="card-title"><span class="persona-badge badge-bi"></span>Data Analyst / BI Dev (Tom)</div>
+              <ul>
+                <li><strong>Requirements Review:</strong> Visualizations needed, user interactions (filters, drill-downs), business questions</li>
+                <li><strong>Dashboard Mockups:</strong> Wireframes in PowerPoint/Figma, Finance user feedback, design iteration</li>
+                <li><strong>Workspace Prep:</strong> Power BI workspace setup, row-level security model (can't build until data ready!)</li>
+                <li><strong>Semantic Model:</strong> Requests Sales_Summary_Weekly aggregated table from Sarah for performance</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Dashboard wireframes</li>
+                <li>Semantic model requirements</li>
+                <li>Power BI workspace setup</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>BA (validates requirements)</li>
+                <li>Finance users (feedback)</li>
+                <li>Lead DE (performance requests)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stage-column">
+            <div class="stage-header" style="background: var(--stage2);">
+              STAGE 2-3<br>Development—Ingestion & Transformation<br><small>(Week 3-5)</small>
+            </div>
+            <div class="card de">
+              <div class="card-title"><span class="persona-badge badge-de"></span>Data Engineer (Ahmed)</div>
+              <ul>
+                <li><strong>SAP Ingestion:</strong> ADF pipeline ingest_sap_sales_orders → OData API → VBAK/VBAP tables → Bronze (raw JSON) → Daily 3AM CET</li>
+                <li><strong>Dynamics Ingestion:</strong> ADF pipeline ingest_dynamics_sales_orders → REST API → SalesOrder/Detail → Bronze → Daily 3AM CET</li>
+                <li><strong>dbt Staging Models:</strong> stg_sap_sales_orders.sql (VBELN→order_id, NETWR→revenue_local, 'SAP'→source_system, 'UK'→market)</li>
+                <li><strong>Testing:</strong> <span class='code'>dbt run --select stg_sap_sales_orders</span> <span class='code'>dbt test --select stg_sap_sales_orders</span></li>
+                <li><strong>Pull Request:</strong> Submits PR to GitHub for code review</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Working ingestion pipelines</li>
+                <li>dbt staging models</li>
+                <li>Unit tests</li>
+                <li>PR for review</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Lead DE (code review)</li>
+                <li>DataOps (deployment)</li>
+                <li>BA (clarifies: 'Exclude cancelled orders?')</li>
+              </ul>
+            </div>
+            <div class="card lead-de">
+              <div class="card-title"><span class="persona-badge badge-lead-de"></span>Lead Data Engineer (Sarah)</div>
+              <ul>
+                <li><strong>Currency Conversion:</strong> fct_currency_conversion.sql → Converts all revenues to EUR using ECB daily rates</li>
+                <li><strong>Dimensional Model:</strong> fct_sales.sql (Grain: one order line) → customer_key, product_key, geography_key, sales_channel_key</li>
+                <li><strong>Code Reviews:</strong> Reviews Ahmed's PRs → checks quality, validates SQL logic, ensures dbt best practices (DRY, modularity)</li>
+                <li><strong>BA Collaboration:</strong> BA: 'VAT—include or exclude?', Sarah: 'Including VAT. Let me confirm with source systems'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Currency conversion model</li>
+                <li>Dimensional model (Fact+Dims)</li>
+                <li>Code reviews</li>
+                <li>dbt documentation</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Ahmed (reviews)</li>
+                <li>BA (business logic)</li>
+                <li>DataOps (deployment)</li>
+                <li>Tom (performance: 'Add weekly aggregation?')</li>
+              </ul>
+            </div>
+            <div class="card ba">
+              <div class="card-title"><span class="persona-badge badge-ba"></span>Business Analyst (BA)</div>
+              <ul>
+                <li><strong>DE Support:</strong> 'Exclude cancelled orders?' → Checks Finance: 'Yes', 'Multiple currencies?' → 'Use order header currency'</li>
+                <li><strong>Logic Validation:</strong> Sarah shows currency conversion SQL → BA validates against requirements</li>
+                <li><strong>UAT Prep:</strong> Test Case 1: UK Week 2024-W10 → Expected £1.25M (SAP) = €1.4375M @ 1.15, Test Case 2: Widget A top product (5K units)</li>
+                <li><strong>Stakeholder Sync:</strong> 'Week 6 launch on track—preview mockup attached'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>UAT test scenarios</li>
+                <li>Business logic validation</li>
+                <li>Stakeholder updates</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Engineers</li>
+                <li>Finance stakeholders</li>
+                <li>Tom (dashboard progress)</li>
+              </ul>
+            </div>
+            <div class="card dataops">
+              <div class="card-title"><span class="persona-badge badge-dataops"></span>DataOps Engineer (Lisa)</div>
+              <ul>
+                <li><strong>PR Reviews:</strong> 'Does dbt model have quality tests?', 'Error handling for API failures?'</li>
+                <li><strong>Pipeline Monitoring:</strong> Alert if SAP ingestion fails, Alert if currency conversion produces NULLs</li>
+                <li><strong>Staging Deployment:</strong> Dry-run validation, data quality check execution tests</li>
+                <li><strong>Coordination:</strong> 'Ahmed, add retry logic to SAP ingestion? VPN drops connection sometimes'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>PR reviews (ops lens)</li>
+                <li>Monitoring alerts configured</li>
+                <li>Deployment dry-run validation</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Engineers (PR reviews)</li>
+                <li>DevOps (CI/CD troubleshooting)</li>
+              </ul>
+            </div>
+            <div class="card devops">
+              <div class="card-title"><span class="persona-badge badge-devops"></span>DevOps Lead (James)</div>
+              <ul>
+                <li><strong>Infrastructure Support:</strong> 'SAP VPN timing out—investigating with network team'</li>
+                <li><strong>CI/CD Monitoring:</strong> Ensures PR builds run successfully, troubleshoots failures</li>
+                <li><strong>Secrets Management:</strong> Updates ERP credentials in Azure Key Vault as needed</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Infrastructure support</li>
+                <li>CI/CD maintenance</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Engineers</li>
+                <li>DataOps</li>
+              </ul>
+            </div>
+            <div class="card bi">
+              <div class="card-title"><span class="persona-badge badge-bi"></span>Data Analyst / BI Dev (Tom)</div>
+              <ul>
+                <li><strong>Waiting for Data:</strong> Silver/Gold layers not ready yet—can't build dashboard!</li>
+                <li><strong>Semantic Model:</strong> Creates Fact_Sales↔Dimension relationships, row-level security (Finance users see only their market)</li>
+                <li><strong>Dashboard Building:</strong> Page 1: KPIs (Revenue, YoY Growth, AOV), line chart (revenue trend), map (by country); Page 2: Top 10 products, category breakdown</li>
+                <li><strong>Performance Optimization:</strong> Notices 30-sec load → Requests Sarah: 'Create Sales_Summary_Weekly in Gold (aggregated week/market/product)?'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Power BI semantic model</li>
+                <li>Initial dashboard (in progress)</li>
+                <li>Performance requests</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>BA (validates requirements)</li>
+                <li>Lead DE (data model changes)</li>
+                <li>Finance users (feedback)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stage-column">
+            <div class="stage-header" style="background: var(--stage3);">
+              STAGE 4<br>CI/CD & Code Review<br><small>(Week 5)</small>
+            </div>
+            <div class="card lead-de">
+              <div class="card-title"><span class="persona-badge badge-lead-de"></span>Lead Data Engineer (Sarah)</div>
+              <ul>
+                <li><strong>Final PR Review:</strong> Ahmed's PR feedback: 'Add docstring for currency conversion', 'Missing NULL test—please add'</li>
+                <li><strong>Gold Layer PR:</strong> Submits own PR for Gold dimensional models</li>
+                <li><strong>DataOps Feedback:</strong> Lisa: 'Add row count anomaly threshold' → Sarah adds: expect_table_row_count_to_be_between [min:1000, max:50000]</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Final PR Gold layer</li>
+                <li>Code review feedback</li>
+                <li>Data quality enhancements</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Ahmed</li>
+                <li>Lisa (DataOps)</li>
+              </ul>
+            </div>
+            <div class="card dataops">
+              <div class="card-title"><span class="persona-badge badge-dataops"></span>DataOps Engineer (Lisa)</div>
+              <ul>
+                <li><strong>PR Operational Review:</strong> ✅ Quality tests? ✅ API error handling? ✅ Documentation?</li>
+                <li><strong>Staging Validation:</strong> <span class='code'>dbt run --select +fct_sales --target staging</span> → Validates output correctness</li>
+                <li><strong>PR Approvals:</strong> Approves if all checks pass</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>PR reviews completed</li>
+                <li>Staging validation</li>
+                <li>PR approvals</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Lead DE</li>
+                <li>Data Engineer</li>
+              </ul>
+            </div>
+            <div class="card devops">
+              <div class="card-title"><span class="persona-badge badge-devops"></span>DevOps Lead (James)</div>
+              <ul>
+                <li><strong>CI/CD Monitoring:</strong> GitHub Actions auto-runs on PR creation → builds dbt models, runs tests</li>
+                <li><strong>Build Troubleshooting:</strong> 'Build failing: dbt version mismatch—updating Dockerfile'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>CI/CD pipeline monitoring</li>
+                <li>Pipeline failure resolutions</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Engineers</li>
+                <li>DataOps</li>
+              </ul>
+            </div>
+            <div class="card ba">
+              <div class="card-title"><span class="persona-badge badge-ba"></span>Business Analyst (BA)</div>
+              <ul>
+                <li><strong>Test Coverage Review:</strong> Checks if test scenarios cover all acceptance criteria → 'Missing multi-currency orders test—can you add?'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Test coverage validation</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Lead DE</li>
+                <li>DataOps</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stage-column">
+            <div class="stage-header" style="background: var(--stage4);">
+              STAGE 5<br>Deployment to Production<br><small>(Week 6)</small>
+            </div>
+            <div class="card dataops">
+              <div class="card-title"><span class="persona-badge badge-dataops"></span>DataOps Engineer (Lisa)</div>
+              <ul>
+                <li><strong>Production Deployment:</strong> <span class='code'>dbt run --select +fct_sales --target production</span> <span class='code'>dbt test --select +fct_sales --target production</span></li>
+                <li><strong>Deployment Validation:</strong> Row counts correct ✅, Quality tests pass ✅, Pipelines scheduled (daily 3AM CET) ✅</li>
+                <li><strong>First Run Monitoring:</strong> Watches end-to-end pipeline execution, checks for errors/warnings</li>
+                <li><strong>Runbook Update:</strong> 'Production pipeline: daily 3AM CET, completes by 8AM CET'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Production deployment complete</li>
+                <li>Runbook updated</li>
+                <li>Monitoring active</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Engineers</li>
+                <li>DevOps</li>
+              </ul>
+            </div>
+            <div class="card ba">
+              <div class="card-title"><span class="persona-badge badge-ba"></span>Business Analyst (BA)</div>
+              <ul>
+                <li><strong>UAT Execution:</strong> Test Case 1: UK Week 2024-W10 → Expected £1.25M (SAP) = Dashboard €1.4375M ✅ PASS; Test Case 2: Widget A (5K units) ✅ PASS</li>
+                <li><strong>Business Sign-off:</strong> 'I confirm dashboard data matches source systems and meets acceptance criteria'</li>
+                <li><strong>Launch Communication:</strong> Email Finance: 'Sales Dashboard now live! Access here...', Schedules training session</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>UAT test results</li>
+                <li>Business sign-off</li>
+                <li>User communication & training</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Finance stakeholders</li>
+                <li>Tom (dashboard)</li>
+                <li>Lisa (DataOps)</li>
+              </ul>
+            </div>
+            <div class="card bi">
+              <div class="card-title"><span class="persona-badge badge-bi"></span>Data Analyst / BI Dev (Tom)</div>
+              <ul>
+                <li><strong>Production Publish:</strong> Moves dashboard Dev→Production workspace, scheduled refresh (Gold layer connection)</li>
+                <li><strong>Performance Validation:</strong> Load time: 4 seconds ✅ (meets <5 sec requirement)</li>
+                <li><strong>User Documentation:</strong> Quick start guide: 'How to use Sales Dashboard', FAQ: 'Why no market data?' (RLS explanation)</li>
+                <li><strong>Training Session:</strong> Walks through features with Finance team, demonstrates drill-down, answers questions</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Dashboard in production</li>
+                <li>User documentation</li>
+                <li>Training completed</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Finance users</li>
+                <li>BA (UAT)</li>
+                <li>Lead DE (data support)</li>
+              </ul>
+            </div>
+            <div class="card pm">
+              <div class="card-title"><span class="persona-badge badge-pm"></span>Data Product Manager</div>
+              <ul>
+                <li><strong>Launch Readiness:</strong> BA sign-off ✅, Dashboard published ✅, Users trained ✅</li>
+                <li><strong>Adoption Tracking:</strong> Week 1: 15 users, Week 2: 28 users, Target: 32 (Finance team) → <span class='metric'>87% adoption ✅</span></li>
+                <li><strong>Feedback Collection:</strong> Finance Director: 'Saving 6hrs/week—fantastic!', 'Spain Phase 2?' → Adds to roadmap</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Launch announcement</li>
+                <li>Adoption tracking</li>
+                <li>Feedback collection</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Finance Director</li>
+                <li>BA</li>
+                <li>Data Architect</li>
+              </ul>
+            </div>
+            <div class="card architect">
+              <div class="card-title"><span class="persona-badge badge-architect"></span>Data Architect</div>
+              <ul>
+                <li><strong>Post-Launch Review:</strong> Pipeline SLA 100% ✅, Data quality 99.8% ✅, Adoption 87% ✅</li>
+                <li><strong>Retrospective:</strong> What went well: 'BA↔DE collaboration', Improve: 'Currency conversion took longer—better upfront discovery'</li>
+                <li><strong>Phase 2 Approval:</strong> Approves Spain addition, assigns resources for kickoff</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Post-launch review</li>
+                <li>Lessons learned</li>
+                <li>Phase 2 approval</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Product Manager</li>
+                <li>All team</li>
+                <li>Finance stakeholders</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stage-column">
+            <div class="stage-header" style="background: var(--stage5);">
+              STAGE 6<br>Monitoring & Operations<br><small>(Ongoing)</small>
+            </div>
+            <div class="card dataops">
+              <div class="card-title"><span class="persona-badge badge-dataops"></span>DataOps Engineer (Lisa)</div>
+              <ul>
+                <li><strong>Daily Monitoring:</strong> Dashboard: All pipelines green ✅, Quality test results: All pass ✅</li>
+                <li><strong>Incident Response:</strong> Week 8 Alert: 'SAP ingestion failed' → VPN timeout → Manual retry Success ✅ → Escalates to James for VPN stability fix</li>
+                <li><strong>SLA Tracking:</strong> Target: Mon 9AM CET, Week 7-12: <span class='metric'>100% SLA compliance ✅</span></li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Daily ops monitoring</li>
+                <li>Incident response</li>
+                <li>SLA tracking reports</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>DevOps (infra issues)</li>
+                <li>BA (business impact)</li>
+                <li>Data Engineers</li>
+              </ul>
+            </div>
+            <div class="card ba">
+              <div class="card-title"><span class="persona-badge badge-ba"></span>Business Analyst (BA)</div>
+              <ul>
+                <li><strong>Issue Triage:</strong> Week 9: Finance reports 'UK sales too low' → BA investigates: SAP 1,000 orders, Dashboard 970 → 30 missing! → Escalates to DataOps</li>
+                <li><strong>Fix Validation:</strong> Lisa reruns pipeline → Now 1,000 orders ✅ → BA confirms with Finance: 'Issue resolved'</li>
+                <li><strong>Enhancement Collection:</strong> Finance Director: 'Can we add Year-over-Year comparison?' → BA documents, shares with Product Manager</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Business incident triage</li>
+                <li>Fix validation</li>
+                <li>Enhancement request log</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Finance users</li>
+                <li>DataOps (tech incidents)</li>
+                <li>Data Product Manager (enhancements)</li>
+              </ul>
+            </div>
+            <div class="card bi">
+              <div class="card-title"><span class="persona-badge badge-bi"></span>Data Analyst / BI Dev (Tom)</div>
+              <ul>
+                <li><strong>Usage Monitoring:</strong> Power BI analytics: 35 active users, 150 views/week</li>
+                <li><strong>User Support:</strong> User: 'Why no Spain data?' → Tom: 'Spain Phase 2, coming next month'</li>
+                <li><strong>Design Iteration:</strong> Adds 'Export to Excel' button (user feedback), improves color scheme for accessibility</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Usage analytics</li>
+                <li>Minor improvements</li>
+                <li>User support</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Finance users</li>
+                <li>BA (enhancements)</li>
+                <li>Lead DE (data questions)</li>
+              </ul>
+            </div>
+            <div class="card devops">
+              <div class="card-title"><span class="persona-badge badge-devops"></span>DevOps Lead (James)</div>
+              <ul>
+                <li><strong>Infrastructure Fixes:</strong> Resolves VPN timeout (Lisa escalation), upgrades VPN gateway to stable config</li>
+                <li><strong>Health Monitoring:</strong> Azure Synapse utilization: 60% (healthy), no scaling needed</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Infrastructure fixes</li>
+                <li>Health monitoring</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>DataOps (escalations)</li>
+                <li>Data Engineers</li>
+                <li>Network team</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stage-column">
+            <div class="stage-header" style="background: var(--stage6);">
+              STAGE 7<br>Continuous Improvement<br><small>(Month 3+)</small>
+            </div>
+            <div class="card ba">
+              <div class="card-title"><span class="persona-badge badge-ba"></span>Business Analyst (BA)</div>
+              <ul>
+                <li><strong>Retrospective:</strong> Conducts with Finance users: 'What's working well?', 'What could be better?'</li>
+                <li><strong>Enhancement Documentation:</strong> #1: Add YoY comparison, #2: Add predictive forecasting, #3: Add Spain market (Phase 2)</li>
+                <li><strong>Prioritization:</strong> With Product Manager: #1 Spain (Phase 2 planned), #2 YoY (quick win), #3 Forecasting (defer—requires ML)</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Enhancement backlog</li>
+                <li>Prioritization input</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Finance users</li>
+                <li>Data Product Manager</li>
+                <li>Lead DE (feasibility)</li>
+              </ul>
+            </div>
+            <div class="card pm">
+              <div class="card-title"><span class="persona-badge badge-pm"></span>Data Product Manager</div>
+              <ul>
+                <li><strong>Enhancement Review:</strong> Validates against roadmap, prioritizes by value/effort</li>
+                <li><strong>Phase 2 Planning:</strong> Adds Spain to backlog, allocates Month 4 sprint resources</li>
+                <li><strong>Success Metrics:</strong> Goal: 8→1 hr/week, Actual: <span class='metric'>6.5hrs reduction = 81% ✅</span>; Goal: 80% adoption, Actual: <span class='metric'>87% ✅</span></li>
+                <li><strong>Leadership Update:</strong> 'Sales Dashboard delivered 6.5hrs/week time savings across Finance team'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Enhancement prioritization</li>
+                <li>Phase 2 plan</li>
+                <li>Success metrics report</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>BA</li>
+                <li>Data Architect</li>
+                <li>Leadership</li>
+              </ul>
+            </div>
+            <div class="card lead-de">
+              <div class="card-title"><span class="persona-badge badge-lead-de"></span>Lead Data Engineer (Sarah)</div>
+              <ul>
+                <li><strong>YoY Enhancement:</strong> fct_sales_yoy.sql → WITH current_year/previous_year CTEs → calculates yoy_growth_pct</li>
+                <li><strong>Collaboration:</strong> To Tom: 'I've added YoY table—can you update dashboard to use it?'</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>YoY comparison data model</li>
+                <li>Deployment to production</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Tom (dashboard)</li>
+                <li>DataOps (deployment)</li>
+                <li>BA (validation)</li>
+              </ul>
+            </div>
+            <div class="card bi">
+              <div class="card-title"><span class="persona-badge badge-bi"></span>Data Analyst / BI Dev (Tom)</div>
+              <ul>
+                <li><strong>Dashboard Enhancement:</strong> Adds new page: 'Year-over-Year Trends', bar chart showing revenue growth % by market</li>
+                <li><strong>A/B Testing:</strong> Shows 5 Finance users new page → Feedback: 'This is exactly what we needed!'</li>
+                <li><strong>Rollout:</strong> Deploys to all users</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Enhanced dashboard with YoY</li>
+                <li>User feedback validation</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Lead DE (data model)</li>
+                <li>Finance users</li>
+                <li>BA</li>
+              </ul>
+            </div>
+            <div class="card dataops">
+              <div class="card-title"><span class="persona-badge badge-dataops"></span>DataOps Engineer (Lisa)</div>
+              <ul>
+                <li><strong>Ops Retrospective:</strong> 'SAP VPN timeouts 3x in Month 2—now resolved after DevOps fix'</li>
+                <li><strong>Monitoring Optimization:</strong> Adds alert: 'Warn if daily order count drops >20% from average'</li>
+                <li><strong>Runbook Update:</strong> Documents lessons learned</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Ops retrospective</li>
+                <li>Monitoring improvements</li>
+                <li>Runbook updates</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>DevOps</li>
+                <li>Data Engineers</li>
+                <li>BA</li>
+              </ul>
+            </div>
+            <div class="card architect">
+              <div class="card-title"><span class="persona-badge badge-architect"></span>Data Architect</div>
+              <ul>
+                <li><strong>Program Health:</strong> Technical debt: Low, Team satisfaction: High, Business value: <span class='metric'>6.5hrs/week savings</span></li>
+                <li><strong>Scaling Strategy:</strong> 'Spain Phase 2 → Italy/France Phase 3', 'Hire +1 Data Engineer Phase 3 to maintain velocity'</li>
+                <li><strong>Reusable Patterns:</strong> 'Currency conversion dbt model can be reused for other projects' → Adds to company dbt package</li>
+              </ul>
+              <div class="card-subtitle">📦 Deliverables</div>
+              <ul>
+                <li>Program health review</li>
+                <li>Scaling plan</li>
+                <li>Reusable pattern docs</li>
+              </ul>
+              <div class="card-subtitle">🤝 Collaborators</div>
+              <ul>
+                <li>Data Product Manager</li>
+                <li>Lead DE</li>
+                <li>All team</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="persona-right">
+      <div class="card de">
+        <div class="card-title"><span class="persona-badge badge-de"></span>Data Engineer (Ahmed)</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Pipeline development, dbt staging models, data ingestion</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> Development, testing, code submissions</div>
+          <div><strong>Impact:</strong> Builds SAP/Dynamics ingestion, dbt staging layer</div>
+        </div>
+        <div class="card-subtitle">🔧 PIPELINES & MODELS</div>
+        <ul>
+          <li><strong>SAP:</strong> ingest_sap_sales_orders → VBAK/VBAP → Bronze layer (daily 3AM)</li>
+          <li><strong>Dynamics:</strong> ingest_dynamics_sales_orders → REST API → Bronze layer</li>
+          <li><strong>dbt Models:</strong> stg_sap_sales_orders, stg_dynamics_sales_orders</li>
+          <li><strong>Testing:</strong> Unit tests for data quality, null checks</li>
+        </ul>
+        <div class="card-subtitle">💻 TECH STACK</div>
+        <ul>
+          <li>Azure Data Factory for ingestion</li>
+          <li>dbt for transformation (Bronze→Silver)</li>
+          <li>GitHub PRs for code review</li>
+          <li>Great Expectations for quality tests</li>
+        </ul>
+      </div>
+      <div class="card bi">
+        <div class="card-title"><span class="persona-badge badge-bi"></span>Data Analyst / BI Developer (Tom)</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Dashboard design, Power BI development, user training</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> Design, development, deployment, support</div>
+          <div><strong>Impact:</strong> Builds Power BI dashboard, optimizes performance, trains users</div>
+        </div>
+        <div class="card-subtitle">📊 DASHBOARD DESIGN</div>
+        <ul>
+          <li><strong>Page 1:</strong> Executive Summary - KPIs (Revenue, YoY, AOV), trend charts, map</li>
+          <li><strong>Page 2:</strong> Product Performance - Top 10 products, category breakdown</li>
+          <li><strong>Page 3:</strong> Drill-down Details - Order-level granular data</li>
+          <li><strong>Performance:</strong> Load time 4 seconds (target: <5 sec)</li>
+        </ul>
+        <div class="card-subtitle">✨ KEY FEATURES</div>
+        <ul>
+          <li>Row-level security (users see only their market)</li>
+          <li>Export to Excel functionality</li>
+          <li>Drill-down country→region→product</li>
+          <li>Scheduled refresh from Gold layer</li>
+        </ul>
+      </div>
+      <div class="card dataops">
+        <div class="card-title"><span class="persona-badge badge-dataops"></span>DataOps Engineer (Lisa)</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Deployment, monitoring, operations, incident response</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> CI/CD, deployment, daily operations</div>
+          <div><strong>Impact:</strong> Ensures SLA compliance, handles incidents, monitors quality</div>
+        </div>
+        <div class="card-subtitle">⚙️ OPERATIONS</div>
+        <ul>
+          <li><strong>Deployment:</strong> dbt deploy to staging/production environments</li>
+          <li><strong>Monitoring:</strong> Pipeline health, data quality checks, SLA tracking</li>
+          <li><strong>Incidents:</strong> Triage, investigate, escalate to DevOps if needed</li>
+          <li><strong>SLA:</strong> 100% Mon 9AM CET delivery (Week 7-12)</li>
+        </ul>
+        <div class="card-subtitle">✅ DATA QUALITY</div>
+        <ul>
+          <li>Great Expectations: null checks, range checks, row count validation</li>
+          <li>Alerts: Pipeline failures, quality test failures</li>
+          <li>Runbook: SAP VPN timeout → retry → escalate to James</li>
+          <li>PR Reviews: Operational quality lens</li>
+        </ul>
+      </div>
+      <div class="card devops">
+        <div class="card-title"><span class="persona-badge badge-devops"></span>DevOps Lead (James)</div>
+        <div style="font-size: 11px; margin-bottom: 8px; padding: 8px; background: #f1f5f9; border-radius: 8px; line-height: 1.5;">
+          <div style="margin-bottom: 4px;"><strong>Focus:</strong> Infrastructure, CI/CD, networking, reliability</div>
+          <div style="margin-bottom: 4px;"><strong>Active:</strong> Setup, monitoring, troubleshooting</div>
+          <div><strong>Impact:</strong> Provisions Azure infra, manages CI/CD, resolves VPN issues</div>
+        </div>
+        <div class="card-subtitle">🏗️ INFRASTRUCTURE</div>
+        <ul>
+          <li><strong>Azure:</strong> Data Factory, Key Vault, Synapse, Data Lake Storage</li>
+          <li><strong>CI/CD:</strong> GitHub Actions for dbt deployment automation</li>
+          <li><strong>Networking:</strong> VPN to SAP (UK), API gateway for Dynamics (NL)</li>
+          <li><strong>Secrets:</strong> Azure Key Vault for ERP credentials</li>
+        </ul>
+        <div class="card-subtitle">🔧 SUPPORT</div>
+        <ul>
+          <li>VPN timeout resolution (escalated by Lisa)</li>
+          <li>CI/CD pipeline troubleshooting</li>
+          <li>Capacity monitoring (Synapse 60% utilization)</li>
+          <li>Network team coordination</li>
+        </ul>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <strong>Databridge Project</strong> | Multi-Market Sales Performance Dashboard<br>
+      UK, Netherlands, Spain • 8 Personas • 7 Stages • 8-Week Delivery
+    </div>
+  </div>
+
+  <div class="zoom-instructions">
+    <strong>Mouse Wheel:</strong> Zoom at cursor | 
+    <strong>Click & Drag:</strong> Pan | 
+    <strong>Double-Click:</strong> Reset | 
+    <strong>Keys:</strong> +/- zoom, R reset
+  </div>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Zoom/Pan state
+  let scale = 1;
+  let translateX = 0;
+  let translateY = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let lastX = 0;
+  let lastY = 0;
+  
+  const canvas = document.querySelector('.canvas');
+  const container = document.body;
+  let rafId = null;
+  let isZooming = false;
+  
+  // Apply transform with requestAnimationFrame for smooth rendering
+  function updateTransform() {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+    }
+    
+    rafId = requestAnimationFrame(() => {
+      // Use translate3d for hardware acceleration and crisp rendering
+      canvas.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+      canvas.style.transformOrigin = '0 0';
+      updateZoomLevel();
+      rafId = null;
+    });
+  }
+  
+  // Disable transition during zoom for performance
+  function setZooming(zooming) {
+    if (zooming !== isZooming) {
+      isZooming = zooming;
+      if (zooming) {
+        canvas.style.transition = 'none';
+      } else {
+        // Re-enable smooth transition after zoom complete
+        setTimeout(() => {
+          if (!isZooming) {
+            canvas.style.transition = 'transform 0.1s ease-out';
+          }
+        }, 50);
+      }
+    }
+  }
+  
+  // Update zoom level display
+  function updateZoomLevel() {
+    const display = document.getElementById('zoom-level');
+    if (display) {
+      display.textContent = `${Math.round(scale * 100)}%`;
+    }
+  }
+  
+  // Mouse wheel zoom at cursor position
+  let zoomTimeout = null;
+  container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    
+    setZooming(true);
+    
+    // Get mouse position relative to container
+    const rect = container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    // Calculate point in canvas coordinates before zoom
+    const pointX = (mouseX - translateX) / scale;
+    const pointY = (mouseY - translateY) / scale;
+    
+    // Zoom in/out
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    const newScale = Math.min(Math.max(0.1, scale * delta), 5);
+    
+    // Calculate new translation to keep point under cursor
+    const newTranslateX = mouseX - pointX * newScale;
+    const newTranslateY = mouseY - pointY * newScale;
+    
+    scale = newScale;
+    translateX = newTranslateX;
+    translateY = newTranslateY;
+    
+    updateTransform();
+    
+    // Reset zooming state after user stops scrolling
+    clearTimeout(zoomTimeout);
+    zoomTimeout = setTimeout(() => {
+      setZooming(false);
+    }, 150);
+  }, { passive: false });
+  
+  // Mouse drag to pan
+  container.addEventListener('mousedown', (e) => {
+    if (e.button === 0) { // Left mouse button
+      isDragging = true;
+      startX = e.clientX - translateX;
+      startY = e.clientY - translateY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      container.style.cursor = 'grabbing';
+    }
+  });
+  
+  container.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      updateTransform();
+    }
+  });
+  
+  container.addEventListener('mouseup', () => {
+    isDragging = false;
+    container.style.cursor = scale > 1 ? 'grab' : 'default';
+  });
+  
+  container.addEventListener('mouseleave', () => {
+    isDragging = false;
+    container.style.cursor = scale > 1 ? 'grab' : 'default';
+  });
+  
+  // Double-click to reset
+  container.addEventListener('dblclick', () => {
+    resetView();
+  });
+  
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '+' || e.key === '=') {
+      e.preventDefault();
+      zoomIn();
+    } else if (e.key === '-' || e.key === '_') {
+      e.preventDefault();
+      zoomOut();
+    } else if (e.key === '0') {
+      e.preventDefault();
+      resetView();
+    } else if (e.key === 'r' || e.key === 'R') {
+      e.preventDefault();
+      resetView();
+    }
+  });
+  
+  // Zoom functions
+  function zoomIn() {
+    const rect = container.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const pointX = (centerX - translateX) / scale;
+    const pointY = (centerY - translateY) / scale;
+    
+    const newScale = Math.min(scale * 1.2, 5);
+    
+    translateX = centerX - pointX * newScale;
+    translateY = centerY - pointY * newScale;
+    scale = newScale;
+    
+    updateTransform();
+    container.style.cursor = 'grab';
+  }
+  
+  function zoomOut() {
+    const rect = container.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const pointX = (centerX - translateX) / scale;
+    const pointY = (centerY - translateY) / scale;
+    
+    const newScale = Math.max(scale / 1.2, 0.1);
+    
+    translateX = centerX - pointX * newScale;
+    translateY = centerY - pointY * newScale;
+    scale = newScale;
+    
+    updateTransform();
+    if (scale <= 1) {
+      container.style.cursor = 'default';
+    }
+  }
+  
+  function resetView() {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    updateTransform();
+    container.style.cursor = 'default';
+  }
+  
+  // Zoom controls UI
+  function createZoomControls() {
+    const controls = document.createElement('div');
+    controls.id = 'zoom-controls';
+    controls.innerHTML = `
+      <button id="zoom-in" title="Zoom In (+)">+</button>
+      <button id="zoom-out" title="Zoom Out (-)">−</button>
+      <button id="zoom-reset" title="Reset View (R)">⟲</button>
+      <div id="zoom-level">100%</div>
+    `;
+    document.body.appendChild(controls);
+    
+    document.getElementById('zoom-in').addEventListener('click', zoomIn);
+    document.getElementById('zoom-out').addEventListener('click', zoomOut);
+    document.getElementById('zoom-reset').addEventListener('click', resetView);
+  }
+  
+  // Initialize
+  window.addEventListener('DOMContentLoaded', () => {
+    createZoomControls();
+    updateTransform();
+  });
+  
+  // Prevent default zoom on Ctrl+Wheel
+  document.addEventListener('wheel', (e) => {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+  
+})();
+</script>
+</body>
+</html>
